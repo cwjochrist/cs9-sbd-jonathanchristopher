@@ -1,3 +1,164 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	--indomie-red: #ee1c26;
+	--indomie-yellow: #fec719;
+	--indomie-green: #00a554;
+	--indomie-black: #0e0e0e;
+	--indomie-cream: #fff8d6;
+}
+
+html,
+body {
+	min-height: 100%;
+	background: var(--indomie-cream);
+}
+
+body {
+	overflow-x: hidden;
+}
+
+.indomie-intro {
+	min-height: 100vh;
+	width: 100vw;
+	animation: indomie-intro-fade 8s ease-in-out forwards;
+}
+
+.indomie-intro__track {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.indomie-intro__panel {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.indomie-intro__panel:first-child {
+	z-index: 1;
+}
+
+.indomie-intro__panel:nth-child(2) {
+	z-index: 2;
+	transform: translate3d(100%, 0, 0);
+	animation: indomie-panel-cover 1s ease-out 1.6s forwards;
+}
+
+.indomie-intro__panel:nth-child(3) {
+	z-index: 3;
+	transform: translate3d(-100%, 0, 0);
+	animation: indomie-panel-cover-left 1s ease-out 3.2s forwards;
+}
+
+.indomie-intro__panel:nth-child(4) {
+	z-index: 4;
+	transform: translate3d(100%, 0, 0);
+	animation: indomie-panel-cover 1s ease-out 4.8s forwards;
+}
+
+.indomie-intro__panel:nth-child(5) {
+	z-index: 5;
+	transform: translate3d(-100%, 0, 0);
+	animation: indomie-panel-cover-left 1s ease-out 6.4s forwards;
+}
+
+.indomie-intro__panel--red {
+	background: var(--indomie-red);
+}
+
+.indomie-intro__panel--yellow {
+	background: var(--indomie-yellow);
+}
+
+.indomie-intro__panel--green {
+	background: var(--indomie-green);
+}
+
+.indomie-intro__panel--black {
+	background: var(--indomie-black);
+}
+
+.indomie-intro__logo {
+	position: relative;
+	z-index: 1;
+	width: min(78vw, 34rem);
+	height: auto;
+	object-fit: contain;
+}
+
+.indomie-intro__logo--red {
+	animation: indomie-logo-fade 8s ease-in-out forwards;
+}
+
+@keyframes indomie-panel-cover {
+	0% {
+		transform: translate3d(100%, 0, 0);
+	}
+
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes indomie-panel-cover-left {
+	0% {
+		transform: translate3d(-100%, 0, 0);
+	}
+
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes indomie-intro-fade {
+	0%,
+	92% {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+@keyframes indomie-logo-fade {
+	0%,
+	12% {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+
+	22% {
+		opacity: 0.9;
+	}
+
+	28%,
+	100% {
+		opacity: 0;
+		transform: translateY(-10px) scale(0.94);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.indomie-intro,
+	.indomie-intro__logo--red,
+	.indomie-intro__panel:nth-child(2),
+	.indomie-intro__panel:nth-child(3),
+	.indomie-intro__panel:nth-child(4),
+	.indomie-intro__panel:nth-child(5) {
+		animation: none;
+	}
+
+	.indomie-intro {
+		display: none;
+	}
+}
